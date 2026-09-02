@@ -2,36 +2,82 @@
 
 Tu es un assistant IA (Claude, ChatGPT, Mistral, Cursor, autre). Un utilisateur t'a donné le lien de ce repo. Voici ce qu'on attend de toi.
 
-## 0. Avant toute chose : ne clone pas, et ne demande aucun accès disque
+## MODE INSTALLATION — si l'utilisateur dit « installe ça »
 
-Ce repo est **de la documentation à lire**, pas un programme à exécuter. Il n'y a rien à installer, rien à compiler, aucune dépendance.
+C'est le cas le plus fréquent. Fais exactement ces 4 étapes, dans l'ordre, sans en sauter.
 
-**Par défaut : ne clone rien, ne demande aucun accès aux fichiers de l'utilisateur.** Lis les fichiers directement depuis leurs URL brutes :
+### Étape A — Installer les skills
 
-```
-https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/README.md
-https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/docs/configuration-compte-meetmagnet.md
-https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/docs/routage-skills.md
-https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/docs/exemples-demandes.md
-https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/skills/<nom-du-skill>/SKILL.md
+**Si tu as un terminal** (Claude Code, Cowork, Cursor, agent avec accès shell) : lance cette commande, c'est tout.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/scripts/install-skills.sh | bash
 ```
 
-Si l'utilisateur te demande de « cloner » le repo, ne prends pas ça au pied de la lettre : il veut que tu l'aides à installer MeetMagnet. Lis les fichiers, et passe à la section 2. Ne demande **jamais** l'accès à son Bureau, ses Documents ou son dossier personnel : tu n'en as pas besoin.
+Elle installe les 7 skills dans `~/.claude/skills/`. Pour un autre emplacement, ajoute-le en argument (`| bash -s ~/.cursor/rules` par exemple). Annonce le résultat : « 7 skills installés ». Ne demande **aucun** accès au Bureau, aux Documents ou au dossier personnel : la commande n'écrit que dans le dossier de skills.
 
-**Les deux seuls cas où cloner sert à quelque chose :**
+**Si tu n'as pas de terminal** (Claude web/mobile, ChatGPT, Le Chat, Kimi en mode chat) : tu ne peux pas installer de fichiers. Dis-le franchement, puis propose l'équivalent : « je charge les skills dans notre conversation ». Lis les 7 `SKILL.md` depuis leurs URL brutes et garde-les en contexte :
 
-- **Claude Code, Cursor, ou un agent avec un terminal** : les skills s'installent sur le disque. Clone dans un dossier dédié que l'utilisateur choisit (propose `~/MeetMagnet/skill-meetmagnet`), et demande l'accès à **ce dossier seulement**, jamais à son parent.
-- **L'utilisateur veut sa propre version** (marque blanche, via `scripts/rename.sh`). Même règle : un dossier dédié, rien d'autre.
+```
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/skills/signaux-achat/SKILL.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/skills/linkedin-recherche-intention/SKILL.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/skills/redaction-message-prospection/SKILL.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/skills/conversation-b2b-rdv/SKILL.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/skills/prompt-sequence-meetmagnet/SKILL.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/skills/analyse-meetmagnet/SKILL.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/skills/meetmagnet-execute/SKILL.md
+```
 
-Si ton environnement ne propose qu'un accès large (« tout le Bureau » ou « rien »), dis-le à l'utilisateur et laisse-le décider. Ne présente jamais une autorisation large comme nécessaire : elle ne l'est pas.
+Pour que ce soit permanent, dis-lui comment : ChatGPT → créer un Projet et y joindre ces fichiers ; Le Chat / Kimi → coller les `SKILL.md` dans les instructions d'un agent ; Claude web → Paramètres → Skills.
 
-## 0 bis. Ce que tu peux faire, et ce que tu ne peux pas
+Ne clone jamais le repo « pour voir ». Il n'y a rien à exécuter d'autre que le script ci-dessus.
 
-**Tu ne peux pas ajouter les connecteurs MCP à sa place.** Dans l'app Claude, Kimi, ChatGPT ou Mistral, ajouter un connecteur passe par les Paramètres et une autorisation OAuth dans le navigateur : c'est une action humaine. Ne prétends jamais l'avoir fait, ne dis jamais « je vais connecter MeetMagnet ». Dis clairement : « je te guide, tu cliques ».
+### Étape B — Faire ajouter les 3 connecteurs MCP
 
-Seule exception : si tu tournes dans **Claude Code** (ou un agent avec un terminal), tu peux exécuter les commandes `claude mcp add` de `INSTALL.md` toi-même. Propose-le, et fais-le après accord.
+**Tu ne peux pas les ajouter toi-même.** Dans une app, ajouter un connecteur passe par Paramètres → Connecteurs et une autorisation OAuth dans le navigateur : c'est une action humaine. Ne dis jamais « je connecte MeetMagnet ». Dis : « je te donne le lien, tu le colles, tu autorises, tu me dis quand c'est fait ».
 
-Ce que tu fais dans tous les cas : donner le bon lien au bon moment, un connecteur à la fois, attendre sa confirmation, lui faire lancer le test, et finir par le récapitulatif de ce qu'il peut demander.
+Seule exception : en **Claude Code**, tu peux exécuter les `claude mcp add` toi-même. Propose-le, fais-le après accord, puis dis-lui de lancer `/mcp` pour s'authentifier.
+
+Donne-les **un par un**, en attendant sa confirmation entre chaque. Le nom est important : les skills désignent les connecteurs par ces noms exacts.
+
+| Ordre | Nom à donner au connecteur | URL à coller |
+|---|---|---|
+| 1 | `App MeetMagnet` | `https://app.meet-magnet.com/mcp` |
+| 2 | `Automatisation User MeetMagnet` | `https://stats.meetmagnet.fr/api/mcp/claude-agent` |
+| 3 | `Recherche prospects MeetMagnet` | `https://mcp.meetmagnet.fr/mcp` |
+
+En Claude Code ou dans un `mcp.json`, les espaces ne passent pas : utilise `App_MeetMagnet`, `Automatisation_User_MeetMagnet`, `Recherche_prospects_MeetMagnet`.
+
+Le chemin exact dans chaque app est dans `INSTALL.md`. Précise aussi avec quel compte il s'authentifie : son compte MeetMagnet pour le 1, son compte StatUser pour le 2, son compte Google pour le 3.
+
+Les 2 et 3 sont optionnels : le 2 si l'utilisateur est client MeetMagnet et veut ses statistiques, le 3 s'il veut chercher de nouveaux prospects. Demande-lui son cas avant, ne fais pas installer les trois par réflexe.
+
+### Étape C — Vérifier
+
+Après chaque connecteur ajouté, fais-lui lancer le test correspondant et vérifie que tu vois bien les outils :
+
+| Connecteur | Demande de test | Ce que tu dois obtenir |
+|---|---|---|
+| App MeetMagnet | « Montre-moi la configuration de mon persona » | Sa cible, son offre, ses intentions |
+| Automatisation User MeetMagnet | « Bilan de mes réponses sur 30 jours » | Des réponses classées par motif |
+| Recherche prospects MeetMagnet | « Trouve-moi 5 DRH de PME qui déploient un SIRH » | 5 profils avec un signal chacun |
+
+Si un test échoue, va voir « Problèmes fréquents » dans `docs/configuration-compte-meetmagnet.md`. Ne passe pas à la suite tant qu'un connecteur annoncé comme ajouté ne répond pas.
+
+### Étape D — Récapituler
+
+Termine **toujours** par ce récapitulatif, adapté à ce qui est réellement installé. Sans ça, l'utilisateur a des outils et ne sait pas quoi en faire.
+
+> Tu peux maintenant me demander, par exemple :
+> - « Quels prospects sont à valider ? Dis-moi lesquels correspondent et lesquels exclure. »
+> - « Qui m'a répondu ? Propose-moi une réponse pour chacun. »
+> - « Fais le point sur mon compte sur 30 jours. »
+> - « Pourquoi j'ai peu de réponses ? »
+> - « Propose-moi 3 nouvelles intentions d'achat et les recherches LinkedIn qui vont avec. »
+> - « Réécris mes instructions de séquence en tutoiement, plus court. »
+> - « Trouve-moi 10 DAF d'ETI qui préparent la facturation électronique, avec un message pour chacun. »
+>
+> Et la règle de base : je ne valide, n'envoie et ne modifie jamais rien sans que tu me dises oui.
 
 ## 1. Comprendre ce que tu as sous les yeux
 
@@ -41,15 +87,7 @@ Ce que tu fais dans tous les cas : donner le bon lien au bon moment, un connecte
 
 ## 2. Si l'utilisateur veut installer
 
-Suis `docs/configuration-compte-meetmagnet.md` **une étape à la fois** :
-
-1. Demande-lui son cas : client MeetMagnet, agence, ou simple test de recherche. Ça détermine quels connecteurs installer.
-2. Pour chaque connecteur, donne **le lien exact à coller** (pas de paraphrase) et le chemin dans son assistant (voir `INSTALL.md`, section correspondant à toi).
-3. Attends qu'il confirme que le connecteur apparaît, puis fais-lui lancer le **test** indiqué.
-4. Une fois les connecteurs testés, propose les skills : tous, ou un seul pour commencer (`analyse-meetmagnet` pour un client, `signaux-achat` pour la recherche).
-5. Termine par le **récap** de ce qu'il peut faire maintenant (section « Récap » du tuto), adapté à ce qu'il a installé.
-
-Ne donne jamais les trois liens d'un coup en espérant qu'il se débrouille. Une étape, une confirmation, la suivante.
+Applique le **MODE INSTALLATION** ci-dessus. Le détail écrit, si tu as besoin de citer une page : `docs/configuration-compte-meetmagnet.md` pour le parcours complet, `INSTALL.md` pour le chemin exact dans chaque app, et `docs/mcp-app-meetmagnet.md`, `docs/mcp-statuser.md`, `docs/mcp-recherche-prospects.md` pour le détail d'un connecteur.
 
 ## 3. Si l'utilisateur veut travailler
 

@@ -31,18 +31,18 @@ Ajoute-les dans cet ordre :
 
 ### 1a. App MeetMagnet
 1. Vérifie que l'intégration est disponible sur ton compte : [app.meet-magnet.com/settings/integrations-ai](https://app.meet-magnet.com/settings/integrations-ai)
-2. Ajoute le connecteur avec `https://app.meet-magnet.com/mcp`, nomme-le `App MeetMagnet`.
+2. Ajoute le connecteur avec `https://app.meet-magnet.com/mcp`, nomme-le exactement `App MeetMagnet`.
 3. Autorise avec ton compte MeetMagnet.
 4. **Test** : « Montre-moi la configuration de mon persona MeetMagnet ». Tu dois voir ta cible, ton offre et tes intentions.
 
 ### 1b. StatUser
 1. Vérifie que tu as un compte : [stats.meetmagnet.fr/dashboard](https://stats.meetmagnet.fr/dashboard). Sinon, demande-le à MeetMagnet.
-2. Ajoute le connecteur avec `https://stats.meetmagnet.fr/api/mcp/claude-agent`, nomme-le `Automatisation User MeetMagnet`.
+2. Ajoute le connecteur avec `https://stats.meetmagnet.fr/api/mcp/claude-agent`, nomme-le exactement `Automatisation User MeetMagnet`.
 3. Autorise avec ton compte StatUser.
 4. **Test** : « Fais-moi le bilan de mes réponses sur 30 jours ». Tu dois voir des réponses classées.
 
 ### 1c. Recherche prospects (optionnel)
-1. Ajoute le connecteur avec `https://mcp.meetmagnet.fr/mcp`, nomme-le `Recherche prospects MeetMagnet`.
+1. Ajoute le connecteur avec `https://mcp.meetmagnet.fr/mcp`, nomme-le exactement `Recherche prospects MeetMagnet`.
 2. Autorise avec ton compte Google.
 3. **Test** : « Trouve-moi 5 DRH de PME qui déploient un SIRH ».
 
@@ -52,7 +52,13 @@ Les skills sont des fiches d'instructions qui disent à l'IA **comment** utilise
 
 Le dossier `skills/` de ce repo contient 7 skills. Chaque skill est un dossier avec un fichier `SKILL.md`.
 
-**Claude (app ou Claude Code)** : Paramètres → Skills → Ajouter → importer le dossier du skill (ou copier le dossier dans `~/.claude/skills/`). Tu peux aussi donner le lien du repo à Claude et lui demander de les installer.
+**Si tu as un terminal** (Claude Code, Cowork, Cursor) : une commande suffit.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/scripts/install-skills.sh | bash
+```
+
+**Claude (app)** : Paramètres → Skills → Ajouter → importer chaque dossier de `skills/`. Pour récupérer les dossiers sans terminal, télécharge le ZIP du repo (bouton vert « Code » → « Download ZIP » sur GitHub) et décompresse-le.
 
 **ChatGPT** : crée un Projet ou un GPT, colle le contenu de chaque `SKILL.md` dans les instructions (ou joins les fichiers au projet). Commence par [`skills/README.md`](../skills/README.md) qui explique quand utiliser quel skill.
 

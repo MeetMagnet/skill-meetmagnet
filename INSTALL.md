@@ -2,13 +2,15 @@
 
 Les trois connecteurs MeetMagnet sont des **serveurs MCP distants** (Model Context Protocol). Tous les assistants qui supportent le MCP les acceptent de la même façon : tu colles une URL, tu autorises avec ton compte, c'est fini.
 
-Les URL :
+Les URL, et le **nom exact** à donner à chaque connecteur (les skills les désignent par ces noms) :
 
-```
-App MeetMagnet        https://app.meet-magnet.com/mcp
-StatUser              https://stats.meetmagnet.fr/api/mcp/claude-agent
-Recherche prospects   https://mcp.meetmagnet.fr/mcp
-```
+| Nom du connecteur | URL | Compte utilisé |
+|---|---|---|
+| `App MeetMagnet` | `https://app.meet-magnet.com/mcp` | ton compte MeetMagnet |
+| `Automatisation User MeetMagnet` | `https://stats.meetmagnet.fr/api/mcp/claude-agent` | ton compte StatUser |
+| `Recherche prospects MeetMagnet` | `https://mcp.meetmagnet.fr/mcp` | ton compte Google |
+
+En terminal ou dans un `mcp.json`, les espaces ne passent pas : `App_MeetMagnet`, `Automatisation_User_MeetMagnet`, `Recherche_prospects_MeetMagnet`.
 
 Les menus des assistants changent souvent. Les chemins ci-dessous sont ceux de septembre 2026 ; si tu ne les retrouves pas, cherche « MCP », « Connecteurs » ou « Intégrations » dans les paramètres.
 
@@ -17,7 +19,7 @@ Les menus des assistants changent souvent. Les chemins ci-dessous sont ceux de s
 1. Paramètres → **Connecteurs** → **Ajouter un connecteur personnalisé**.
 2. Nom : `App MeetMagnet`. URL : `https://app.meet-magnet.com/mcp`. Ajouter.
 3. Clique **Connecter** : la page de connexion MeetMagnet s'ouvre, autorise.
-4. Recommence pour StatUser et Recherche prospects.
+4. Recommence pour `Automatisation User MeetMagnet` et `Recherche prospects MeetMagnet`.
 5. Dans une conversation, vérifie que les connecteurs sont activés (icône outils / connecteurs sous la zone de saisie).
 
 **Skills** : Paramètres → **Skills** (ou Capacités) → importer chaque dossier de `skills/`. Ou plus simple : colle le lien du repo dans une conversation et dis « installe les skills de ce repo ».
@@ -25,19 +27,20 @@ Les menus des assistants changent souvent. Les chemins ci-dessous sont ceux de s
 ## Claude Code (terminal)
 
 ```bash
-claude mcp add --transport http app-meetmagnet https://app.meet-magnet.com/mcp
-claude mcp add --transport http statuser-meetmagnet https://stats.meetmagnet.fr/api/mcp/claude-agent
-claude mcp add --transport http recherche-meetmagnet https://mcp.meetmagnet.fr/mcp
+claude mcp add --transport http App_MeetMagnet https://app.meet-magnet.com/mcp
+claude mcp add --transport http Automatisation_User_MeetMagnet https://stats.meetmagnet.fr/api/mcp/claude-agent
+claude mcp add --transport http Recherche_prospects_MeetMagnet https://mcp.meetmagnet.fr/mcp
 ```
 
 Puis dans Claude Code : `/mcp` pour lancer l'authentification de chacun.
 
-**Skills** : copie les dossiers de `skills/` dans `~/.claude/skills/` (global) ou `.claude/skills/` (projet).
+**Skills** : une commande, rien à cloner.
 
 ```bash
-git clone https://github.com/MeetMagnet/skill-meetmagnet.git
-cp -r skill-meetmagnet/skills/* ~/.claude/skills/
+curl -fsSL https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/scripts/install-skills.sh | bash
 ```
+
+Elle installe les 7 skills dans `~/.claude/skills/`. Pour un projet précis : `| bash -s .claude/skills`.
 
 ## ChatGPT
 
@@ -64,16 +67,16 @@ Fichier `mcp.json` (Cursor : `~/.cursor/mcp.json` ou `.cursor/mcp.json` dans le 
 ```json
 {
   "mcpServers": {
-    "app-meetmagnet": { "url": "https://app.meet-magnet.com/mcp" },
-    "statuser-meetmagnet": { "url": "https://stats.meetmagnet.fr/api/mcp/claude-agent" },
-    "recherche-meetmagnet": { "url": "https://mcp.meetmagnet.fr/mcp" }
+    "App_MeetMagnet": { "url": "https://app.meet-magnet.com/mcp" },
+    "Automatisation_User_MeetMagnet": { "url": "https://stats.meetmagnet.fr/api/mcp/claude-agent" },
+    "Recherche_prospects_MeetMagnet": { "url": "https://mcp.meetmagnet.fr/mcp" }
   }
 }
 ```
 
 L'éditeur lance l'authentification OAuth au premier appel.
 
-**Skills** : ajoute les `SKILL.md` comme règles (Cursor : `.cursor/rules/`) ou colle-les dans les instructions du projet.
+**Skills** : `curl -fsSL https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/scripts/install-skills.sh | bash -s .cursor/rules`, ou colle les `SKILL.md` dans les instructions du projet.
 
 ## Autres clients MCP
 

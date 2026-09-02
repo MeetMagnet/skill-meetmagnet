@@ -8,29 +8,40 @@ Ce repo se lit à deux niveaux :
 
 > **Version 1 (septembre 2026).** Trois connecteurs séparés aujourd'hui. Ils seront probablement rassemblés en un seul plus tard ; la doc évoluera avec.
 
-## Démarrer : un seul message à envoyer
+## Démarrer : un message
 
-Ouvre ton assistant (Claude, ChatGPT, Mistral, Kimi…) et colle ça :
+Ouvre ton assistant (Claude, Cowork, Cursor, ChatGPT, Le Chat, Kimi…) et colle ça :
 
-> Guide-moi pas à pas pour connecter MeetMagnet à cet assistant, en suivant ce mode d'emploi :
-> https://github.com/MeetMagnet/skill-meetmagnet
+> Installe MeetMagnet en suivant ce mode d'emploi : https://github.com/MeetMagnet/skill-meetmagnet
 > Une étape à la fois, attends que je confirme avant de passer à la suivante.
 
-Ne lui demande pas de « cloner » le repo : il n'y a rien à exécuter, juste à lire. Un assistant qui réclame l'accès à ton Bureau ou à tes Documents se trompe — voir [Un seul dossier de travail](#un-seul-dossier-de-travail).
+Il va : installer les 7 skills, puis te faire ajouter les connecteurs un par un en te donnant l'URL et le nom exact, vérifier que chacun répond, et finir par la liste de ce que tu peux lui demander. Compte 5 minutes.
 
-**Ce que l'assistant fait :** il te donne le bon lien au bon moment, un connecteur à la fois, il attend ta confirmation, te fait lancer un test, puis te récapitule ce que tu peux lui demander.
+**Ce qu'il fait tout seul :** installer les skills, si ton assistant a un terminal (Claude Code, Cowork, Cursor). Sinon il les charge dans la conversation et te dit comment les garder.
 
-**Ce qu'il ne peut pas faire :** ajouter les connecteurs à ta place. Dans une app (Claude, ChatGPT, Kimi…), ça passe par Paramètres → Connecteurs et une autorisation dans le navigateur : c'est toi qui cliques. Seule exception, **Claude Code** en terminal, où l'assistant peut lancer les commandes lui-même.
+**Ce que tu fais toi :** ajouter les connecteurs. Paramètres → Connecteurs → coller l'URL → autoriser. Aucune IA ne peut cliquer à ta place là-dessus. Elle te guide, tu confirmes, elle continue.
 
-Compte 5 minutes. Le détail écrit, si tu préfères le faire seul : [docs/configuration-compte-meetmagnet.md](docs/configuration-compte-meetmagnet.md).
+Installation des skills à la main, si tu préfères :
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/scripts/install-skills.sh | bash
+```
+
+Le parcours écrit en entier : [docs/configuration-compte-meetmagnet.md](docs/configuration-compte-meetmagnet.md).
 
 ## Les trois connecteurs en 30 secondes
 
-| Outil | Lien MCP à coller | Compte | Pour quoi |
+Le **nom** compte : les skills désignent les connecteurs par ces noms exacts.
+
+| Nom exact à donner | Lien MCP à coller | Compte | Pour quoi |
 |---|---|---|---|
-| **App MeetMagnet** | `https://app.meet-magnet.com/mcp` | Ton compte MeetMagnet ([activer ici](https://app.meet-magnet.com/settings/integrations-ai)) | Prospects, séquences, conversations, ciblage, intentions |
-| **StatUser** | `https://stats.meetmagnet.fr/api/mcp/claude-agent` | Ton compte StatUser ([dashboard](https://stats.meetmagnet.fr/dashboard)) | Stats, bilans, AgentOS, pilotage des actions |
-| **Recherche prospects** | `https://mcp.meetmagnet.fr/mcp` | Ton compte Google ([site](https://mcp.meetmagnet.fr/)) | Trouver des décideurs et des publications, sans compte MeetMagnet |
+| `App MeetMagnet` | `https://app.meet-magnet.com/mcp` | Ton compte MeetMagnet ([activer ici](https://app.meet-magnet.com/settings/integrations-ai)) | Prospects, séquences, conversations, ciblage, intentions |
+| `Automatisation User MeetMagnet` | `https://stats.meetmagnet.fr/api/mcp/claude-agent` | Ton compte StatUser ([dashboard](https://stats.meetmagnet.fr/dashboard)) | Stats, bilans, AgentOS, pilotage des actions |
+| `Recherche prospects MeetMagnet` | `https://mcp.meetmagnet.fr/mcp` | Ton compte Google ([site](https://mcp.meetmagnet.fr/)) | Trouver des décideurs et des publications, sans compte MeetMagnet |
+
+En terminal ou dans un `mcp.json` : `App_MeetMagnet`, `Automatisation_User_MeetMagnet`, `Recherche_prospects_MeetMagnet`.
+
+Détail de chacun (connexion, outils, ce qu'on peut faire) : [App MeetMagnet](docs/mcp-app-meetmagnet.md) · [StatUser](docs/mcp-statuser.md) · [Recherche prospects](docs/mcp-recherche-prospects.md).
 
 Installation détaillée par assistant : [INSTALL.md](INSTALL.md).
 
@@ -102,6 +113,7 @@ skills/
   analyse-meetmagnet/                  ← SKILL.md + references/
   meetmagnet-execute/
 scripts/
+  install-skills.sh                   ← installe les 7 skills en une commande
   rename.sh                            ← cloner sous un autre nom (marque blanche)
 ```
 
