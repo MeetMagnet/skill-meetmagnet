@@ -84,9 +84,15 @@ Tout client qui accepte un serveur MCP distant en HTTP (streamable HTTP ou SSE) 
 
 ## Faut-il cloner le repo ?
 
-**Dans une app (Claude, ChatGPT, Kimi, Mistral) : non.** Il n'y a rien à exécuter. L'assistant lit la doc en ligne et te guide ; toi tu colles les URL dans les Paramètres. Si un assistant réclame l'accès à ton Bureau ou tes Documents pour « cloner le repo », refuse : il n'en a pas besoin.
+**Non, dans presque tous les cas.** Les skills s'installent avec une commande qui ne laisse rien traîner :
 
-**Dans Claude Code ou Cursor : oui**, parce que les skills s'installent sur ton disque. Clone dans un dossier dédié et n'autorise l'accès qu'à celui-là :
+```bash
+curl -fsSL https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/scripts/install-skills.sh | bash
+```
+
+Et sans terminal, l'assistant lit la doc en ligne et te guide. Si un assistant réclame l'accès à ton Bureau ou tes Documents pour « cloner le repo », refuse : il n'en a pas besoin.
+
+Le clone ne sert que si tu veux **ta propre version** en marque blanche (voir `scripts/rename.sh`). Dans ce cas, un dossier dédié, et rien d'autre :
 
 ```bash
 mkdir -p ~/MeetMagnet && cd ~/MeetMagnet
