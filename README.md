@@ -55,6 +55,10 @@ Plus d'exemples commentés : [docs/exemples-demandes.md](docs/exemples-demandes.
 2. **Chaque connecteur voit un seul compte.** Un compte agence ne pilote pas tous ses clients d'un coup : pour un autre compte, reconnecte avec ce compte.
 3. **Les intentions marquées ⚠️ PERFORMANTE ne se désactivent pas** sans ton accord.
 
+## Un seul dossier de travail
+
+Si tu demandes à un assistant de cloner ce repo pour toi (Claude, Kimi, Cursor…), il ne doit jamais réclamer l'accès à tout ton Bureau ou ton dossier personnel. Donne-lui un seul dossier dédié, par exemple `~/MeetMagnet/skill-meetmagnet`, et rien d'autre. Détail : [AGENTS.md](AGENTS.md#0-où-travailler-obligatoire-avant-toute-chose).
+
 ## Structure du repo
 
 ```

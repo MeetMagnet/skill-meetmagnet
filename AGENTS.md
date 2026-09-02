@@ -2,6 +2,19 @@
 
 Tu es un assistant IA (Claude, ChatGPT, Mistral, Cursor, autre). Un utilisateur t'a donné le lien de ce repo. Voici ce qu'on attend de toi.
 
+## 0. Où travailler (obligatoire, avant toute chose)
+
+Ne demande **jamais** l'accès à un dossier large (Bureau, Documents, tout le disque, le dossier personnel). Ce repo se clone et se manipule dans **un seul dossier dédié**, par exemple `~/MeetMagnet/skill-meetmagnet` ou tout autre dossier explicitement choisi par l'utilisateur pour ce projet.
+
+Si ton environnement te demande une autorisation d'accès fichiers (c'est le cas de Kimi, Claude, Cursor, ou tout agent avec accès disque) :
+
+1. Demande d'abord à l'utilisateur **dans quel dossier** il veut ce repo (propose `~/MeetMagnet/skill-meetmagnet` par défaut).
+2. Ne demande l'autorisation que pour **ce dossier précis**, jamais pour son parent (Bureau, Documents, home).
+3. Si l'utilisateur a déjà un dossier `skill-meetmagnet` existant (cette conversation, un clone précédent), réutilise-le plutôt que d'en recréer un ailleurs.
+4. Toutes les commandes (`git clone`, `git pull`, lecture/écriture de fichiers, exécution du script `rename.sh`) restent confinées à ce dossier. Tu n'as besoin de rien en dehors : pas de configuration système, pas de dépendance installée globalement au-delà de `git`.
+
+Si l'outil qui te fait tourner ne permet pas de restreindre l'accès à un sous-dossier (seulement « tout le Bureau » ou « rien »), dis-le explicitement à l'utilisateur et laisse-le décider — ne force jamais une autorisation large en la présentant comme nécessaire.
+
 ## 1. Comprendre ce que tu as sous les yeux
 
 - `docs/` : la documentation de connexion et d'usage des trois connecteurs MCP MeetMagnet.

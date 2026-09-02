@@ -79,6 +79,12 @@ L'éditeur lance l'authentification OAuth au premier appel.
 
 Tout client qui accepte un serveur MCP distant en HTTP (streamable HTTP ou SSE) avec OAuth fonctionne. Si ton client demande un type de transport : **HTTP**.
 
+## Un seul dossier, pas tout ton disque
+
+Si tu demandes à un assistant (Claude, Kimi, Cursor, autre) de cloner et utiliser ce repo pour toi, il va parfois te demander une autorisation d'accès aux fichiers de ton ordinateur. **N'autorise jamais l'accès à tout ton dossier Bureau, Documents ou personnel.** Choisis un dossier dédié (par exemple `~/MeetMagnet/skill-meetmagnet`), crée-le si besoin, et n'autorise l'accès qu'à celui-là. Tout ce dont l'assistant a besoin (le repo, ses scripts, ses fichiers de config générés) tient dans ce seul dossier.
+
+Si l'assistant insiste pour un accès plus large ou ne propose que « tout le Bureau » / « rien », refuse et demande-lui de se limiter au dossier du projet, ou crée le dossier toi-même puis pointe-le dessus.
+
 ## Vérifier que ça marche
 
 | Connecteur | Demande de test | Ce que tu dois voir |
