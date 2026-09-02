@@ -2,18 +2,36 @@
 
 Tu es un assistant IA (Claude, ChatGPT, Mistral, Cursor, autre). Un utilisateur t'a donné le lien de ce repo. Voici ce qu'on attend de toi.
 
-## 0. Où travailler (obligatoire, avant toute chose)
+## 0. Avant toute chose : ne clone pas, et ne demande aucun accès disque
 
-Ne demande **jamais** l'accès à un dossier large (Bureau, Documents, tout le disque, le dossier personnel). Ce repo se clone et se manipule dans **un seul dossier dédié**, par exemple `~/MeetMagnet/skill-meetmagnet` ou tout autre dossier explicitement choisi par l'utilisateur pour ce projet.
+Ce repo est **de la documentation à lire**, pas un programme à exécuter. Il n'y a rien à installer, rien à compiler, aucune dépendance.
 
-Si ton environnement te demande une autorisation d'accès fichiers (c'est le cas de Kimi, Claude, Cursor, ou tout agent avec accès disque) :
+**Par défaut : ne clone rien, ne demande aucun accès aux fichiers de l'utilisateur.** Lis les fichiers directement depuis leurs URL brutes :
 
-1. Demande d'abord à l'utilisateur **dans quel dossier** il veut ce repo (propose `~/MeetMagnet/skill-meetmagnet` par défaut).
-2. Ne demande l'autorisation que pour **ce dossier précis**, jamais pour son parent (Bureau, Documents, home).
-3. Si l'utilisateur a déjà un dossier `skill-meetmagnet` existant (cette conversation, un clone précédent), réutilise-le plutôt que d'en recréer un ailleurs.
-4. Toutes les commandes (`git clone`, `git pull`, lecture/écriture de fichiers, exécution du script `rename.sh`) restent confinées à ce dossier. Tu n'as besoin de rien en dehors : pas de configuration système, pas de dépendance installée globalement au-delà de `git`.
+```
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/README.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/docs/configuration-compte-meetmagnet.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/docs/routage-skills.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/docs/exemples-demandes.md
+https://raw.githubusercontent.com/MeetMagnet/skill-meetmagnet/main/skills/<nom-du-skill>/SKILL.md
+```
 
-Si l'outil qui te fait tourner ne permet pas de restreindre l'accès à un sous-dossier (seulement « tout le Bureau » ou « rien »), dis-le explicitement à l'utilisateur et laisse-le décider — ne force jamais une autorisation large en la présentant comme nécessaire.
+Si l'utilisateur te demande de « cloner » le repo, ne prends pas ça au pied de la lettre : il veut que tu l'aides à installer MeetMagnet. Lis les fichiers, et passe à la section 2. Ne demande **jamais** l'accès à son Bureau, ses Documents ou son dossier personnel : tu n'en as pas besoin.
+
+**Les deux seuls cas où cloner sert à quelque chose :**
+
+- **Claude Code, Cursor, ou un agent avec un terminal** : les skills s'installent sur le disque. Clone dans un dossier dédié que l'utilisateur choisit (propose `~/MeetMagnet/skill-meetmagnet`), et demande l'accès à **ce dossier seulement**, jamais à son parent.
+- **L'utilisateur veut sa propre version** (marque blanche, via `scripts/rename.sh`). Même règle : un dossier dédié, rien d'autre.
+
+Si ton environnement ne propose qu'un accès large (« tout le Bureau » ou « rien »), dis-le à l'utilisateur et laisse-le décider. Ne présente jamais une autorisation large comme nécessaire : elle ne l'est pas.
+
+## 0 bis. Ce que tu peux faire, et ce que tu ne peux pas
+
+**Tu ne peux pas ajouter les connecteurs MCP à sa place.** Dans l'app Claude, Kimi, ChatGPT ou Mistral, ajouter un connecteur passe par les Paramètres et une autorisation OAuth dans le navigateur : c'est une action humaine. Ne prétends jamais l'avoir fait, ne dis jamais « je vais connecter MeetMagnet ». Dis clairement : « je te guide, tu cliques ».
+
+Seule exception : si tu tournes dans **Claude Code** (ou un agent avec un terminal), tu peux exécuter les commandes `claude mcp add` de `INSTALL.md` toi-même. Propose-le, et fais-le après accord.
+
+Ce que tu fais dans tous les cas : donner le bon lien au bon moment, un connecteur à la fois, attendre sa confirmation, lui faire lancer le test, et finir par le récapitulatif de ce qu'il peut demander.
 
 ## 1. Comprendre ce que tu as sous les yeux
 

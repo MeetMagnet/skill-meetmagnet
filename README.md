@@ -8,6 +8,22 @@ Ce repo se lit à deux niveaux :
 
 > **Version 1 (septembre 2026).** Trois connecteurs séparés aujourd'hui. Ils seront probablement rassemblés en un seul plus tard ; la doc évoluera avec.
 
+## Démarrer : un seul message à envoyer
+
+Ouvre ton assistant (Claude, ChatGPT, Mistral, Kimi…) et colle ça :
+
+> Guide-moi pas à pas pour connecter MeetMagnet à cet assistant, en suivant ce mode d'emploi :
+> https://github.com/MeetMagnet/skill-meetmagnet
+> Une étape à la fois, attends que je confirme avant de passer à la suivante.
+
+Ne lui demande pas de « cloner » le repo : il n'y a rien à exécuter, juste à lire. Un assistant qui réclame l'accès à ton Bureau ou à tes Documents se trompe — voir [Un seul dossier de travail](#un-seul-dossier-de-travail).
+
+**Ce que l'assistant fait :** il te donne le bon lien au bon moment, un connecteur à la fois, il attend ta confirmation, te fait lancer un test, puis te récapitule ce que tu peux lui demander.
+
+**Ce qu'il ne peut pas faire :** ajouter les connecteurs à ta place. Dans une app (Claude, ChatGPT, Kimi…), ça passe par Paramètres → Connecteurs et une autorisation dans le navigateur : c'est toi qui cliques. Seule exception, **Claude Code** en terminal, où l'assistant peut lancer les commandes lui-même.
+
+Compte 5 minutes. Le détail écrit, si tu préfères le faire seul : [docs/configuration-compte-meetmagnet.md](docs/configuration-compte-meetmagnet.md).
+
 ## Les trois connecteurs en 30 secondes
 
 | Outil | Lien MCP à coller | Compte | Pour quoi |
@@ -57,7 +73,11 @@ Plus d'exemples commentés : [docs/exemples-demandes.md](docs/exemples-demandes.
 
 ## Un seul dossier de travail
 
-Si tu demandes à un assistant de cloner ce repo pour toi (Claude, Kimi, Cursor…), il ne doit jamais réclamer l'accès à tout ton Bureau ou ton dossier personnel. Donne-lui un seul dossier dédié, par exemple `~/MeetMagnet/skill-meetmagnet`, et rien d'autre. Détail : [AGENTS.md](AGENTS.md#0-où-travailler-obligatoire-avant-toute-chose).
+Lire ce repo ne demande aucun accès à ton ordinateur. Si un assistant te réclame l'accès à ton Bureau, tes Documents ou ton dossier personnel pour « cloner le repo », refuse : il n'en a pas besoin, il peut lire les fichiers directement en ligne.
+
+Le clone n'est utile que dans deux cas : tu utilises **Claude Code ou Cursor** (les skills s'installent sur ton disque), ou tu veux **ta propre version** en marque blanche. Dans ces cas, donne-lui un dossier dédié, par exemple `~/MeetMagnet/skill-meetmagnet`, et rien d'autre.
+
+Détail des consignes données à l'IA : [AGENTS.md](AGENTS.md).
 
 ## Structure du repo
 

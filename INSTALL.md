@@ -79,11 +79,16 @@ L'éditeur lance l'authentification OAuth au premier appel.
 
 Tout client qui accepte un serveur MCP distant en HTTP (streamable HTTP ou SSE) avec OAuth fonctionne. Si ton client demande un type de transport : **HTTP**.
 
-## Un seul dossier, pas tout ton disque
+## Faut-il cloner le repo ?
 
-Si tu demandes à un assistant (Claude, Kimi, Cursor, autre) de cloner et utiliser ce repo pour toi, il va parfois te demander une autorisation d'accès aux fichiers de ton ordinateur. **N'autorise jamais l'accès à tout ton dossier Bureau, Documents ou personnel.** Choisis un dossier dédié (par exemple `~/MeetMagnet/skill-meetmagnet`), crée-le si besoin, et n'autorise l'accès qu'à celui-là. Tout ce dont l'assistant a besoin (le repo, ses scripts, ses fichiers de config générés) tient dans ce seul dossier.
+**Dans une app (Claude, ChatGPT, Kimi, Mistral) : non.** Il n'y a rien à exécuter. L'assistant lit la doc en ligne et te guide ; toi tu colles les URL dans les Paramètres. Si un assistant réclame l'accès à ton Bureau ou tes Documents pour « cloner le repo », refuse : il n'en a pas besoin.
 
-Si l'assistant insiste pour un accès plus large ou ne propose que « tout le Bureau » / « rien », refuse et demande-lui de se limiter au dossier du projet, ou crée le dossier toi-même puis pointe-le dessus.
+**Dans Claude Code ou Cursor : oui**, parce que les skills s'installent sur ton disque. Clone dans un dossier dédié et n'autorise l'accès qu'à celui-là :
+
+```bash
+mkdir -p ~/MeetMagnet && cd ~/MeetMagnet
+git clone https://github.com/MeetMagnet/skill-meetmagnet.git
+```
 
 ## Vérifier que ça marche
 

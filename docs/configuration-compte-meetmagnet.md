@@ -23,6 +23,8 @@ Tu n'as pas besoin des trois pour commencer. Choisis selon ton cas :
 
 ## Étape 1 : ajouter les connecteurs dans ton assistant IA
 
+> **C'est toi qui cliques.** Ton assistant ne peut pas ajouter un connecteur à ta place : ça passe par les Paramètres de l'app et une autorisation dans le navigateur. Il te donne le lien, tu le colles, tu autorises, tu lui dis « c'est fait ». (Exception : dans Claude Code en terminal, il peut lancer les commandes lui-même.)
+
 Le chemin exact dépend de l'assistant. Voir [INSTALL.md](../INSTALL.md) pour Claude, ChatGPT, Mistral, Cursor et les autres. Le principe est toujours le même : **Paramètres → Connecteurs (ou MCP / Intégrations) → Ajouter un serveur MCP distant → coller l'URL → autoriser**.
 
 Ajoute-les dans cet ordre :
