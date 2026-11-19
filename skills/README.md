@@ -11,6 +11,7 @@ Chaque dossier contient un `SKILL.md` : une fiche d'instructions qu'une IA lit p
 | [`prompt-sequence-meetmagnet`](prompt-sequence-meetmagnet/SKILL.md) | Produire le prompt d'instructions de séquence à coller dans MeetMagnet | « instructions de séquence », « configure mes messages », « change le ton » | App |
 | [`analyse-meetmagnet`](analyse-meetmagnet/SKILL.md) | Faire le point complet sur un compte : chiffres, config, conversations, plan | « fais le point », « bilan », « pourquoi peu de réponses » | StatUser + App |
 | [`meetmagnet-execute`](meetmagnet-execute/SKILL.md) | Exécuter les actions planifiées et confirmées, avec vérification avant chaque écriture | « meetmagnet-execute email », « exécute les actions dues » | StatUser + App |
+| [`preparation-cold-call`](preparation-cold-call/SKILL.md) | Préparer une séance de cold call : prospects les plus chauds, croisés avec ton CRM, signal vérifié, portable, proposition de valeur, accroche, questions et objections tirées de tes appels, créneaux libres, puis mise à jour après les appels | « cold call », « prépare ma séance d'appels », « qui j'appelle aujourd'hui » | App, ton CRM, ton agenda |
 
 Comment ils s'enchaînent : [docs/routage-skills.md](../docs/routage-skills.md).
 
